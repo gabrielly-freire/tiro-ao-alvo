@@ -1,0 +1,16 @@
+body {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    margin: auto;
+    align-items: center;
+    font-family: sans-serif;
+    background-color: rgb(3, 41, 113);
+}
+
+#area {
+    background-image: url(img/space.png);
+    height: 600px;
+    width: 600px;
+    cursor: url('img/hero.png'), default;
+}
