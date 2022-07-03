@@ -1,11 +1,14 @@
-body {
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-    margin: auto;
-    align-items: center;
-    font-family: sans-serif;
+body {  
+    font-family:'Times New Roman', Times, serif;
     background-color: rgb(3, 41, 113);
+    text-align: center;
+    height: 100%;
+
+}
+
+#parciais{
+    float: right;
+    text-align: justify;
 }
 
 #area {
@@ -13,4 +16,10 @@ body {
     height: 600px;
     width: 600px;
     cursor: url('img/hero.png'), default;
+    position: relative;
+    margin: auto;
+}
+
+ul{
+    list-style: none;
 }

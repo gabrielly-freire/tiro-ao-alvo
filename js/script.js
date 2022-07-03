@@ -1,99 +1,97 @@
-// TEMPORIZADOR
-const miliseg = document.querySelector('.milissegundos')
-const seg = document.querySelector('.segundos')
-const min = document.querySelector('.minutos')
+//CRONOMETRO
+const miliseg = document.getElementById('milissegundos');
+const seg = document.getElementById('segundos');
+const min = document.getElementById('minutos');
 
-let miliNum = 0
-let segNum = 0
-let minNum = 0
-let INTERVALO
-let tempo
+let miliNum = 0;
+let segNum = 0;
+let minNum = 0;
+let INTERVALO;
 
 function milissegundos() {
-  miliNum++
+  miliNum++;
   if (miliNum < 10) {
-    miliseg.innerHTML = '0' + miliNum
+    miliseg.innerHTML = '0' + miliNum;
   } else {
-    miliseg.innerHTML = miliNum
+    miliseg.innerHTML = miliNum;
   }
 
   if (miliNum == 99) {
-    miliNum = 0
-    segundos()
+    miliNum = 0;
+    segundos();
   }
 }
 
 function segundos() {
-  segNum++
+  segNum++;
   if (segNum < 10) {
-    seg.innerHTML = '0' + segNum
+    seg.innerHTML = '0' + segNum;
   } else {
-    seg.innerHTML = segNum
+    seg.innerHTML = segNum;
   }
 
   if (segNum == 59) {
-    segNum = 0
-    minutos()
+    segNum = 0;
+    minutos();
   }
 }
 
 function minutos() {
-  minNum++
+  minNum++;
   if (minNum < 10) {
-    min.innerHTML = '0' + minNum
+    min.innerHTML = '0' + minNum;
   } else {
-    min.innerHTML = minNum
+    min.innerHTML = minNum;
   }
 }
 
 function iniciar() {
-  clearInterval(INTERVALO)
+  clearInterval(INTERVALO);
   INTERVALO = setInterval(() => {
-    milissegundos()
+    milissegundos();
   }, 10)
+
+  //MOVIMENTAÇÃO DO INVASOR
+  setInterval(() => {
+    invasor.style.position = "relative";
+
+    invasor.style.top = (Math.floor(Math.random() * (400 - 10 + 1)) + 10) + "px";
+    invasor.style.left = (Math.floor(Math.random() * (400 - 10 + 1)) + 10) + "px";
+  },1000)
+
 }
 
 function parar() {
-  clearInterval(INTERVALO)
+  clearInterval(INTERVALO);
 
-  /*miliNum = 0
-  segNum = 0
-  minNum = 0
-  miliseg.innerHTML = '00'
-  seg.innerHTML = '00'
-  min.innerHTML = '00'*/
+  let nome = prompt("Digite seu nome:");
+
+  //HISTÓRICO
+  let lista = document.querySelector('#jogadores');
+  let li = document.createElement('li');
+  li.innerHTML = nome +' ' +document.getElementById('a').innerHTML +'/' + document.getElementById('t').innerHTML + ' ' + 
+  document.getElementById('minutos').innerHTML + ':'+document.getElementById('segundos').innerHTML + ':'+document.getElementById('milissegundos').innerHTML;
+  ;
+  lista.appendChild(li);
+
+  // ZERAR CRONO, TENTATIVA E ACERTOS
+  document.getElementById('a').innerHTML = 0;
+  document.getElementById('t').innerHTML = 0;
+
+  miliNum = 0;
+  segNum = 0;
+  minNum = 0;
+  miliseg.innerHTML = '00';
+  seg.innerHTML = '00';
+  min.innerHTML = '00';
+
+  
 }
 
-
-// JOGO
-const playArea = document.querySelector('#area');
-const aliensImg = 'img/monster.png';
-const startButton = document.querySelector('iniciar');
-let alienInterval;
-
-//inicio do jogo
-startButton.addEventListener('click', (event) => {
-  playGame();
-})
-
-function playGame() {
-  startButton.style.display = 'none';
-  instructionsText.style.display = 'none';
-  window.addEventListener('keydown', flyShip);
-  alienInterval = setInterval(() => {
-    createAliens();
-  }, 2000);
-}
-//click na img
+//CONTADORES DE CLICK
 function contadorAcerto() {
   document.getElementById('a').innerHTML = parseInt(document.getElementById('a').innerHTML) + 1;
 }
 function contadorTentativa() {
   document.getElementById('t').innerHTML = parseInt(document.getElementById('t').innerHTML) + 1;
-}
-
-// HISTORICO
-function historico() {
-  document.getElementById('parte').innerHTML = parseInt(document.getElementById('parte').innerHTML) + 1;
-  document.getElementById('tudo').innerHTML = parseInt(document.getElementById('tudo').innerHTML) + 1;
 }
